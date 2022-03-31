@@ -17,12 +17,12 @@ view: bw_card_subway_list {
     sql: ${TABLE}.dt ;;
   }
 
-  dimension: getoff_passenger_cnt {
+  measure: getoff_passenger_cnt {
     type: number
     sql: ${TABLE}.getoff_passenger_cnt ;;
   }
 
-  dimension: passenger_cnt {
+  measure: passenger_cnt {
     type: number
     sql: ${TABLE}.passenger_cnt ;;
   }
@@ -52,8 +52,8 @@ view: bw_card_subway_list {
     sql: ${TABLE}.subway_line_nm ;;
   }
 
-  measure: count {
-    type: count
-    drill_fields: []
-  }
+  # measure: count {
+  #   type: count
+  #   drill_fields: []
+  # }
 }
