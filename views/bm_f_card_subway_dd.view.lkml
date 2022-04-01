@@ -34,9 +34,7 @@ view: bm_f_card_subway_dd {
               "color: #000000;
               font-size:70%;
               text-align:left">
-              기간 : {% if _filters['dt_date']%}
-                          {{_filters['dt_date']}}
-                          {% else %} 전체 {% endif %}
+              기간 :
               &nbsp;&nbsp;&nbsp;
               호선 : {% if _filters['subway_line_nm']%}
                           {{_filters['subway_line_nm']}}
@@ -72,6 +70,33 @@ view: bm_f_card_subway_dd {
     type: sum
     sql: ${TABLE}.passenger_cnt ;;
   }
+
+  measure: passenger_rate {
+    label: "수송분담율"
+    type: number
+    sql: ${clean_transported_cnt} / ${bm_f_card_subway_line.line_clean_transported_cnt} ;;
+    value_format: "0%"
+  }
+
+
+  parameter: p_choose_date {
+    view_label: "Date_Parameter"
+    type: date
+  }
+
+  dimension: cal_14_days_ago {
+    type: date
+    sql: DATE_SUB(date({% parameter p_choose_date%}), INTERVAL 14 DAY) ;;
+  }
+
+  dimension: period {
+    type: string
+    sql: case when ${dt_date} >= ${cal_14_days_ago}
+              and ${dt_date} <= date({% parameter p_choose_date%}) then "yes"
+          else "no" end ;;
+
+  }
+
 
 
 }
