@@ -93,17 +93,17 @@ view: bm_f_passenger_subway_period {
         end ;;
   }
 
-  measure: now_passenger_cnt {
-    label: "당기"
-    type: number
-    sql: case when ${period} = '당기' then ${cnt} else 0 end ;;
-  }
+  # measure: now_passenger_cnt {
+  #   label: "당기"
+  #   type: number
+  #   sql: case when ${period} = '당기' then ${cnt} else 0 end ;;
+  # }
 
-  measure: old_passenger_cnt {
-    label: "전기"
-    type: number
-    sql: case when ${period} = '전기' then ${cnt} else 0 end ;;
-  }
+  # measure: old_passenger_cnt {
+  #   label: "전기"
+  #   type: number
+  #   sql: case when ${period} = '전기' then ${cnt} else 0 end ;;
+  # }
 
 
 
