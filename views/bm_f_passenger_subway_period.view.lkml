@@ -8,7 +8,7 @@ view: bm_f_passenger_subway_period {
       from `project_a_team.bm_f_passenger_subway_dd`
       group by dt, subway_line_cd
 
-      union
+      union all
 
       select dt
             , subway_line_cd
@@ -17,7 +17,7 @@ view: bm_f_passenger_subway_period {
       from `project_a_team.bm_f_passenger_subway_dd`
       group by dt, subway_line_cd
 
-      union
+      union all
 
       select dt
             , subway_line_cd
@@ -26,11 +26,11 @@ view: bm_f_passenger_subway_period {
       from `project_a_team.bm_f_passenger_subway_dd`
       group by dt, subway_line_cd
 
-      union
+      union all
 
       select dt
             , subway_line_cd
-            , '유동 인원수' as gubun
+            , '순수송 인원수' as gubun
             , sum(clean_transported_cnt) as  cnt
       from `project_a_team.bm_f_passenger_subway_dd`
       group by dt, subway_line_cd
@@ -68,7 +68,7 @@ view: bm_f_passenger_subway_period {
   }
 
   measure: cnt {
-    type: number
+    type: sum
     sql: ${TABLE}.cnt ;;
   }
 
