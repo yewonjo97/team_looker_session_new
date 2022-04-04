@@ -52,18 +52,18 @@ explore: joey_bm_f_passenger_subway_period {
           and ${joey_bm_f_passenger_subway_period.gubun} = ${joey_bm_f_passenger_subway_previous.gubun}
           ;;
   }
-  join: joey_bm_f_passenger_subway_line {
-    type: left_outer
-    relationship: many_to_one
-    sql_on: ${joey_bm_f_passenger_subway_period.dt_date} = ${joey_bm_f_passenger_subway_line.dt_date}
-        and ${joey_bm_f_passenger_subway_period.subway_line_cd} = ${joey_bm_f_passenger_subway_line.subway_line_cd};;
-  }
-  join: joey_bm_f_passenger_subway_line_previous {
-    type: left_outer
-    relationship: many_to_one
-    sql_on: ${joey_bm_f_passenger_subway_period.dt_date} = ${joey_bm_f_passenger_subway_line_previous.next_dt_date}
-        and ${joey_bm_f_passenger_subway_period.subway_line_cd} = ${joey_bm_f_passenger_subway_line_previous.subway_line_cd};;
-  }
+  # join: joey_bm_f_passenger_subway_line {
+  #   type: left_outer
+  #   relationship: many_to_one
+  #   sql_on: ${joey_bm_f_passenger_subway_period.dt_date} = ${joey_bm_f_passenger_subway_line.dt_date}
+  #       and ${joey_bm_f_passenger_subway_period.subway_line_cd} = ${joey_bm_f_passenger_subway_line.subway_line_cd};;
+  # }
+  # join: joey_bm_f_passenger_subway_line_previous {
+  #   type: left_outer
+  #   relationship: many_to_one
+  #   sql_on: ${joey_bm_f_passenger_subway_period.dt_date} = ${joey_bm_f_passenger_subway_line_previous.next_dt_date}
+  #       and ${joey_bm_f_passenger_subway_period.subway_line_cd} = ${joey_bm_f_passenger_subway_line_previous.subway_line_cd};;
+  # }
 }
 
 
