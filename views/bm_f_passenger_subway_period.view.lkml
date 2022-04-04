@@ -2,38 +2,50 @@ view: bm_f_passenger_subway_period {
   derived_table: {
     sql:
       select dt
+            , tm_range_cd
             , subway_line_cd
+            , station_cd
+            , passenger_type_cd
             , '총 승차 인원수' as gubun
-            , sum(passenger_cnt) as cnt
+            , passenger_cnt as cnt
       from `project_a_team.bm_f_passenger_subway_dd`
-      group by dt, subway_line_cd
+    --   group by dt, tm_range_cd, subway_line_cd, station_cd, passenger_type_cd
 
       union all
 
       select dt
+            , tm_range_cd
             , subway_line_cd
+            , station_cd
+            , passenger_type_cd
             , '총 하차 인원수' as gubun
-            , sum(getoff_passenger_cnt) as  cnt
+            , getoff_passenger_cnt as  cnt
       from `project_a_team.bm_f_passenger_subway_dd`
-      group by dt, subway_line_cd
+    --   group by dt, tm_range_cd, subway_line_cd, station_cd, passenger_type_cd
 
       union all
 
       select dt
+            , tm_range_cd
             , subway_line_cd
+            , station_cd
+            , passenger_type_cd
             , '유동 인원수' as gubun
-            , sum(foot_traffic_cnt) as  cnt
+            , foot_traffic_cnt as  cnt
       from `project_a_team.bm_f_passenger_subway_dd`
-      group by dt, subway_line_cd
+    --   group by dt, tm_range_cd, subway_line_cd, station_cd, passenger_type_cd
 
       union all
 
       select dt
+            , tm_range_cd
             , subway_line_cd
+            , station_cd
+            , passenger_type_cd
             , '순수송 인원수' as gubun
-            , sum(clean_transported_cnt) as  cnt
+            , clean_transported_cnt as  cnt
       from `project_a_team.bm_f_passenger_subway_dd`
-      group by dt, subway_line_cd
+    --   group by dt, tm_range_cd, subway_line_cd, station_cd, passenger_type_cd
       ;;
 
   }
@@ -55,12 +67,25 @@ view: bm_f_passenger_subway_period {
     sql: ${TABLE}.dt ;;
   }
 
+  dimension: passenger_type_cd {
+    type: string
+    sql: ${TABLE}.passenger_type_cd ;;
+  }
+
+  dimension: station_cd {
+    type: string
+    sql: ${TABLE}.station_cd ;;
+  }
 
   dimension: subway_line_cd {
     type: string
     sql: ${TABLE}.subway_line_cd ;;
   }
 
+  dimension: tm_range_cd {
+    type: string
+    sql: ${TABLE}.tm_range_cd ;;
+  }
 
   dimension: gubun {
     type: string
