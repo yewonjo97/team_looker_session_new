@@ -10,7 +10,6 @@ derived_table: {
   from `project_a_team.bm_f_card_subway_dd`
   group by dt, subway_line_nm
   ;;
-
 }
 
 
