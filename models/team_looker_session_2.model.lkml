@@ -38,5 +38,33 @@ explore: bm_f_passenger_subway_dd {
   # sql_always_where: ${bm_f_card_subway_dd.period} = 'yes' ;;
 }
 
+explore: joey_bm_f_passenger_subway_period {
+  label : "joey_passenger_subway"
+  from: joey_bm_f_passenger_subway_period
+  join: joey_bm_f_passenger_subway_previous {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${joey_bm_f_passenger_subway_period.dt_date} = ${joey_bm_f_passenger_subway_previous.next_dt_date}
+          and ${joey_bm_f_passenger_subway_period.tm_range_cd} = ${joey_bm_f_passenger_subway_previous.tm_range_cd}
+          and ${joey_bm_f_passenger_subway_period.subway_line_cd} = ${joey_bm_f_passenger_subway_previous.subway_line_cd}
+          and ${joey_bm_f_passenger_subway_period.station_cd} = ${joey_bm_f_passenger_subway_previous.station_cd}
+          and ${joey_bm_f_passenger_subway_period.passenger_type_cd} = ${joey_bm_f_passenger_subway_previous.passenger_type_cd}
+          and ${joey_bm_f_passenger_subway_period.gubun} = ${joey_bm_f_passenger_subway_previous.gubun}
+          ;;
+  }
+  join: joey_bm_f_passenger_subway_line {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${joey_bm_f_passenger_subway_period.dt_date} = ${joey_bm_f_passenger_subway_line.dt_date}
+        and ${joey_bm_f_passenger_subway_period.subway_line_cd} = ${joey_bm_f_passenger_subway_line.subway_line_cd};;
+  }
+  join: joey_bm_f_passenger_subway_line_previous {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${joey_bm_f_passenger_subway_period.dt_date} = ${joey_bm_f_passenger_subway_line_previous.next_dt_date}
+        and ${joey_bm_f_passenger_subway_period.subway_line_cd} = ${joey_bm_f_passenger_subway_line_previous.subway_line_cd};;
+  }
+}
 
- explore: bm_f_passenger_subway_period {}
+
+ explore: bm_f_passenger_subway_period  {}

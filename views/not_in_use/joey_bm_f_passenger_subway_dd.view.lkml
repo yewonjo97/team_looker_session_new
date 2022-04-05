@@ -54,7 +54,8 @@ view: joey_bm_f_passenger_subway_dd {
               font-size:50%;
               text-align:left">
               기간 : {% if _filters['dt_date']%}
-                          {{_filters['dt_date']}}
+                          {{ joey_bm_f_passenger_subway_dd.min_date._value }}
+                          {{ joey_bm_f_passenger_subway_dd.max_date._value }}
                           {% else %} 전체 {% endif %}
               &nbsp;&nbsp;&nbsp;
               여객 유형 : {% if _filters['bm_d_passenger_type_cd.passenger_type_nm']%}
@@ -92,5 +93,15 @@ view: joey_bm_f_passenger_subway_dd {
     label: "순수송인원수"
     type: sum
     sql: ${TABLE}.clean_transported_cnt ;;
+  }
+
+  dimension: min_date {
+    type: date
+    sql: min(${dt_date}) ;;
+  }
+
+  dimension: max_date {
+    type: date
+    sql: max(${dt_date}) ;;
   }
 }
