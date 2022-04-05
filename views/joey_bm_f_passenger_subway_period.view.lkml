@@ -54,26 +54,26 @@ view: joey_bm_f_passenger_subway_period {
   }
 
 
-  # measure: now_line_clean {
-  #   type :  number
-  #   sql: max(${joey_bm_f_passenger_subway_line.line_clean_transported_cnt}) ;;
-  # }
+  measure: now_line_clean {
+    type :  number
+    sql: max(${joey_bm_f_passenger_subway_line.line_clean_transported_cnt}) ;;
+  }
 
-  # measure: prev_line_clean {
-  #   type :  number
-  #   sql: max(${joey_bm_f_passenger_subway_line_previous.line_clean_transported_cnt}) ;;
-  # }
+  measure: prev_line_clean {
+    type :  number
+    sql: max(${joey_bm_f_passenger_subway_line_previous.line_clean_transported_cnt}) ;;
+  }
 
 
-  # measure: now_rate {
-  #   type: number
-  #   sql: ${now_cnt}/${now_line_clean} ;;
-  # }
+  measure: now_rate {
+    type: number
+    sql: ${now_cnt}/${now_line_clean} ;;
+  }
 
-  # measure: prev_rate {
-  #   type: number
-  #   sql: ${prev_cnt}/${prev_line_clean} ;;
-  # }
+  measure: prev_rate {
+    type: number
+    sql: ${prev_cnt}/${prev_line_clean} ;;
+  }
 
 
   measure : diff {

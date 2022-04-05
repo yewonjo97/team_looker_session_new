@@ -34,7 +34,7 @@ view: bm_f_card_subway_dd {
               "color: #000000;
               font-size:70%;
               text-align:left">
-              기간 :
+              기간 :{{ p_choose_date._parameter_value }}
               &nbsp;&nbsp;&nbsp;
               호선 : {% if _filters['subway_line_nm']%}
                           {{_filters['subway_line_nm']}}
